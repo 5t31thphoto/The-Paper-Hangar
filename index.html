@@ -76,10 +76,18 @@ main{max-width:1060px;margin:0 auto;padding:26px 24px 80px}
 .hidden{display:none!important}
 .empty{padding:60px 0;text-align:center;color:var(--crease);font-size:15px}
 
-/* ---------- detail dialog ---------- */
-dialog{border:none;border-radius:16px;padding:0;width:min(960px,calc(100vw - 28px));
-  max-height:calc(100vh - 10px);box-shadow:0 24px 80px rgba(16,49,79,.35);color:var(--ink);
-  display:none;flex-direction:column}
+/* ---------- detail dialog ---------- */dialog{
+dialog{
+  border:none;
+  border-radius:16px;
+  padding:0;
+  width:min(960px,calc(100vw - 28px));
+  height: 80vh; /* Forces the popup to take up 80% of the screen height */
+  box-shadow:0 24px 80px rgba(16,49,79,.35);
+  color:var(--ink);
+  display:none;
+  flex-direction:column;
+}
 dialog[open]{display:flex}
 dialog::backdrop{background:rgba(16,49,79,.55)}
 .d-head{background:var(--navy);color:#fff;padding:26px 30px 22px;position:relative}
@@ -89,7 +97,12 @@ dialog::backdrop{background:rgba(16,49,79,.55)}
 .d-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;
   border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;line-height:1}
 .d-close:hover{background:rgba(255,255,255,.12)}
-.d-body{padding:24px 30px 30px;overflow-y:auto;flex:1;min-height:0}
+.d-body{
+  padding:24px 30px 30px;
+  overflow-y:auto; /* Adds a scrollbar if the text is too long */
+  flex:1;
+  min-height: 200px; /* Prevents the text window from flattening to zero */
+}
 .d-cols{display:grid;grid-template-columns:1fr 230px;gap:24px}
 @media(max-width:720px){.d-cols{grid-template-columns:1fr}}
 .d-desc{font-size:14.5px;color:#42546A}
@@ -341,7 +354,7 @@ function openPlane(id){
 }
 
 function renderStep(){
-  const p = byId[openId];
+  const p = byId[openId];y
   const i = cur[openId];
   const n = p.steps.length;
   document.getElementById("s-fig").innerHTML = p.steps[i].svg;
